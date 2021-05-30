@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: IMRAN
+Build-Jdk: 15.0.2
+Implementation-Title: authorization-server-api
+Implementation-Version: 1.0.0.RELEASE
+Implementation-Vendor-Id: com.imranmabar
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/authorization-server-api
+Created-By: Maven Integration for Eclipse
+
