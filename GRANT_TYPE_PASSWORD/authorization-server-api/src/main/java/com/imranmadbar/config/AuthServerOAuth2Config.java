@@ -41,17 +41,24 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
                 .checkTokenAccess("isAuthenticated()")
                 .passwordEncoder(passwordEncoder);
     }
-
+    
+    
+// For In Memory
+    
+//    @Override
+//    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+//        clients.inMemory()
+//                .withClient("client")
+//                .secret("secret")
+//                .authorizedGrantTypes("password", "authorization_code")
+//                .scopes("read", "write")
+//                .accessTokenValiditySeconds(60 * 60 * 8);
+//    }
+    
+//  Using JDBC
     @Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-                .withClient("client")
-                .secret("secret")
-                .authorizedGrantTypes("password", "authorization_code")
-                .scopes("read", "write")
-//                .scopes("write")
- //               .scopes("read")
-                .accessTokenValiditySeconds(60 * 60 * 8);
+    public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
+        clients.jdbc(dataSource);
     }
 
     @Override

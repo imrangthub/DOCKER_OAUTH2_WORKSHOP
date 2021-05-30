@@ -65,3 +65,35 @@ create table if not exists ClientDetails (
     additionalInformation VARCHAR(4096),
     autoApproveScopes VARCHAR(255)
   );
+  
+  
+  
+Data
+===============================================
+  
+ OAuth2 Related 
+ #Client Info 
+-----------------------------------------------
+INSERT INTO oauth_client_details
+(`client_id`, `client_secret`, `scope`, `authorized_grant_types`, `access_token_validity`, `refresh_token_validity`, `autoapprove`) 
+VALUES 
+('imranmadbarClientAppId', 'appSecret', 'imranmadbar,med,read,write', 'password,authorization_code,refresh_token', '36000', '36000', '1');
+
+
+Spring Security Related
+#Add User
+--------------------------------------------------
+INSERT INTO users_tbl(`id`, `email`, `full_name`, `password`, `username`) VALUES ('1', 'imran@gmail.com', 'MD IMRAN HOSSAIN', '123456', 'admin');
+
+#Add Role
+--------------------------------------------------
+INSERT INTO roles_tbl (`id`, `description`, `is_deleted`, `name`) VALUES ('1', 'For admin user', '0', 'ROLE_ADMIN');
+
+
+#Mape User and Role
+--------------------------------------------------
+INSERT INTO users_roles_tbl (`user_id`, `role_id`) VALUES ('1', '1');
+
+
+
+  
