@@ -23,27 +23,32 @@ public class OAuth2ResourceServerConfig extends GlobalMethodSecurityConfiguratio
 	@Autowired
 	private DataSource dataSource;
 
-	@Override
-	protected MethodSecurityExpressionHandler createExpressionHandler() {
-		return new OAuth2MethodSecurityExpressionHandler();
-	}
 
+//For DB Remote Token Service	
+	
 //	@Bean
 //	public TokenStore tokenStore() {
 //		return new JdbcTokenStore(dataSource);
 //	}
 	
 	
-	// Remote Token Service
-
-	@Primary
+	
+//For  Remote Token Service
+	
 	@Bean
+	@Primary
 	public RemoteTokenServices tokenService() {
 		RemoteTokenServices tokenService = new RemoteTokenServices();
 		tokenService.setCheckTokenEndpointUrl("http://localhost:8081/oauth/check_token");
-		tokenService.setClientId("client");
-		tokenService.setClientSecret("secret");
+		tokenService.setClientId("imranmadbarClientAppId");
+		tokenService.setClientSecret("appSecret");
 		return tokenService;
+	}
+	
+
+	@Override
+	protected MethodSecurityExpressionHandler createExpressionHandler() {
+		return new OAuth2MethodSecurityExpressionHandler();
 	}
 
 }

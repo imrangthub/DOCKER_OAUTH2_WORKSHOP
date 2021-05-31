@@ -26,7 +26,6 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    @Qualifier(value = "authServerAuthenticationManager")
     private AuthenticationManager authenticationManager;
 
     @Bean
@@ -43,23 +42,23 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
     }
     
     
-// For In Memory
-    
+//  Using JDBC Client Details
 //    @Override
-//    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-//        clients.inMemory()
-//                .withClient("client")
-//                .secret("secret")
-//                .authorizedGrantTypes("password", "authorization_code")
-//                .scopes("read", "write")
-//                .accessTokenValiditySeconds(60 * 60 * 8);
+//    public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
+//        clients.jdbc(dataSource);
 //    }
     
-//  Using JDBC
-    @Override
-    public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.jdbc(dataSource);
-    }
+ // For In Memory Client Details
+    
+  @Override
+  public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+      clients.inMemory()
+              .withClient("imranmadbarClientAppId")
+              .secret("appSecret")
+              .authorizedGrantTypes("password", "authorization_code")
+              .scopes("read", "write")
+              .accessTokenValiditySeconds(60 * 60 * 8);
+  }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {

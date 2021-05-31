@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class ServerSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -17,22 +16,34 @@ public class ServerSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomAuthenticationProvider customAuthenticationProvider;
 
+// Custom Authentication Provider
 	
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    	auth.authenticationProvider(customAuthenticationProvider);
-    }
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//    	auth.authenticationProvider(customAuthenticationProvider);
+//    }
+//    
+  	
+	
+ // In Memory Authentication Provider
+ 	
+ 	@Override
+ 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+ 		auth.inMemoryAuthentication().withUser("user").password("12345").roles("USER").and().withUser("admin")
+ 				.password(("123456")).roles("USER", "ADMIN");
+ 
+ 	}
+    
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers("/login").permitAll()
-		.anyRequest().authenticated()
-		.and().formLogin().permitAll();
+		.anyRequest().authenticated();
 	}
 
-	@Bean(name = "authServerAuthenticationManager")
+	
+	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
@@ -43,16 +54,7 @@ public class ServerSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
 	}
 	
-	
-	
-// In Memory AuthProvider
-	
-//	@Override
-//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.inMemoryAuthentication().withUser("user").password("12345").roles("USER").and().withUser("admin")
-//				.password(("123456")).roles("USER", "ADMIN");
-//
-//	}
+
 
 
 }

@@ -96,4 +96,65 @@ INSERT INTO users_roles_tbl (`user_id`, `role_id`) VALUES ('1', '1');
 
 
 
+Hibernate Query
+========================================================
+
+Hibernate: 
+    
+    create table hibernate_sequence (
+       next_val bigint
+    ) engine=InnoDB
+Hibernate: 
+    
+    insert into hibernate_sequence values ( 1 )
+Hibernate: 
+    
+    insert into hibernate_sequence values ( 1 )
+Hibernate: 
+    
+    create table roles_tbl (
+       id bigint not null,
+        description varchar(255),
+        is_deleted boolean default false not null,
+        name varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table users_roles_tbl (
+       user_id bigint not null,
+        role_id bigint not null
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table users_tbl (
+       id bigint not null,
+        full_name varchar(255),
+        password varchar(255),
+        username varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    
+    alter table users_tbl 
+       drop index UK_7p2qdaqmxojhma31lopxr6gqx
+Hibernate: 
+    
+    alter table users_tbl 
+       add constraint UK_7p2qdaqmxojhma31lopxr6gqx unique (username)
+Hibernate: 
+    
+    alter table users_roles_tbl 
+       add constraint FKec55svjjqvr2r098g415jqrpp 
+       foreign key (role_id) 
+       references roles_tbl (id)
+Hibernate: 
+    
+    alter table users_roles_tbl 
+       add constraint FK16ne3yb5jx0r56xxmb5bp6d82 
+       foreign key (user_id) 
+       references users_tbl (id)
+
+
+
   

@@ -32,40 +32,28 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-
 		String userName = authentication.getName();
 		String password = authentication.getCredentials().toString();
-		
-		if(userName==null || password==null ) {
+		if (userName == null || password == null) {
 			return null;
 		}
 		UserEntity user = userService.findByUserName(userName);
-
 		List<RoleEntity> roles = user.getRoles();
-
 //		System.out.println("userName: " + userName);
 //		System.out.println("password: " + password);
 //		System.out.println("UserEntity" + user);
 //		System.out.println("roles" + roles);
-
 		if (user != null) {
-
 			if (passwordEncoder.matches(password, user.getPassword())) {
-
 				List<RoleEntity> userRoles = user.getRoles();
 				List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-
 				for (RoleEntity role : userRoles) {
 					authorities.add(new SimpleGrantedAuthority(role.getName().toString()));
 				}
-
 				return new UsernamePasswordAuthenticationToken(user.getUsername(), password, authorities);
 			}
-
 		}
-
 		return null;
-
 	}
 
 	@Override
