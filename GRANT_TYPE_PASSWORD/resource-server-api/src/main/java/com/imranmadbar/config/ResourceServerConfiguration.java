@@ -43,7 +43,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 	@Primary
 	public RemoteTokenServices tokenService() {
 		RemoteTokenServices tokenService = new RemoteTokenServices();
-		tokenService.setCheckTokenEndpointUrl("http://localhost:8081/oauth/check_token");
+		tokenService.setCheckTokenEndpointUrl("http://oauth2-authorization-server-api:8081/oauth/check_token");
+//		tokenService.setCheckTokenEndpointUrl("http://localhost:8081/oauth/check_token");
 		tokenService.setClientId("imranmadbarClientAppId");
 		tokenService.setClientSecret("appSecret");
 		return tokenService;
