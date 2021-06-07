@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
   declarations: [
     AppComponent,
     StaticTokenCheckComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

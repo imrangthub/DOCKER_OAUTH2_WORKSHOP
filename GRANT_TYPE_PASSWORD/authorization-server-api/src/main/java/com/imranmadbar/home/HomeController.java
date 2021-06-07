@@ -1,5 +1,8 @@
 package com.imranmadbar.home;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,18 +16,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 	
 	@GetMapping({"/home"})
-	public String testMsg(){
+	public Map<String, Object> testMsg(){
 		
 		Authentication curretnAuthentication = SecurityContextHolder.getContext().getAuthentication();
 		System.out.println("Curretn Authentication All       ####: "+curretnAuthentication);
 		System.out.println("Curretn Authentication Name      ####: "+curretnAuthentication.getName());
 		System.out.println("Curretn Authentication Principal ####: "+curretnAuthentication.getPrincipal());
 		
-		return "This message for all From Home Controller";
+		Map<String, Object> resMap = new HashMap<>();
+
+		resMap.put("msg", "This is form Authorization Server Home Congroller");
+		resMap.put("Principal",curretnAuthentication.getPrincipal());
+		resMap.put("AuthenticationInfo",curretnAuthentication);
+
+		return resMap;
 	}
 	
 	@PostMapping("/home")
-    public String getAll(@RequestBody(required = false) String reqObj) {
+    public Map<String, Object> getAll(@RequestBody(required = false) String reqObj) {
 		
 		System.out.println("From Admin Controller");
 
@@ -33,7 +42,13 @@ public class HomeController {
 		System.out.println("Curretn Authentication Name      ####: " + curretnAuthentication.getName());
 		System.out.println("Curretn Authentication Principal ####: " + curretnAuthentication.getPrincipal());
 
-		return "This is form Home Congroller";
+		Map<String, Object> resMap = new HashMap<>();
+
+		resMap.put("msg", "This is form Authorization Server Home Congroller");
+		resMap.put("Principal",curretnAuthentication.getPrincipal());
+		resMap.put("AuthenticationInfo",curretnAuthentication);
+
+		return resMap;
 	}
 	
 

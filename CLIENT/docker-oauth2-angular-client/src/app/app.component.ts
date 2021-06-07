@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CoreAppService } from './coreApp/core-app.service';
+import { HomeService } from './coreApp/home.service';
 
 @Component({
   selector: 'app-root',
@@ -7,30 +7,31 @@ import { CoreAppService } from './coreApp/core-app.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   title = 'docker-oauth2-angular-client';
 
+  resObj:any={};
 
 
-constructor(
-  private coreAppService: CoreAppService
+  constructor(
+    private homeService: HomeService
+  ) { }
+
+  ngOnInit() {
+    this.getHomeResourceWithGet();
+  }
   
-) { }
-
-ngOnInit() {
-  this.getHomeResourceWithGet();
-}
-
-getHomeResourceWithGet(): void {
-  this.coreAppService.getWatherInfo().subscribe(
-    res => {
-      console.log('getWatherInfoRes: ',res);
-    },
-    err => {
-      console.log("getRegetWatherInfosourceErrorRes: ", err);
-    }
-  )
-}
-
+  getHomeResourceWithGet(): void {
+    this.homeService.getHomeInfo().subscribe(
+      res => {
+        console.log('getHomeResourceWithGetRes: ',res);
+        this.resObj = res;
+      },
+      err => {
+        console.log("getHomeResourceWithGetErrorRes: ", err);
+      }
+    )
+  }
 
 
 

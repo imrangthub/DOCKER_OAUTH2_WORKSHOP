@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthServerAdminComponent } from './auth-server-admin/auth-server-admin.component';
+import { ResourceServerAdminComponent } from './resource-server-admin/resource-server-admin.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 
@@ -16,6 +18,14 @@ const routes: Routes = [
   {
     path: 'home',
     component: UserHomeComponent
+  },
+  {
+    path: 'admin',
+    component: AuthServerAdminComponent
+  },
+  {
+    path: 'resource-admin',
+    component: ResourceServerAdminComponent
   },
 ];
 

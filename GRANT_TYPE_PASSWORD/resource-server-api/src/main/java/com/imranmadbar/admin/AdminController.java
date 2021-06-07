@@ -1,5 +1,8 @@
 package com.imranmadbar.admin;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,17 +15,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
 
 	@GetMapping("/list")
-	public String index() {
-
+	public Map<String, Object> index(){
+		
 		System.out.println("From Admin Controller");
-
+		
 		Authentication curretnAuthentication = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println("Curretn Authentication All       ####: " + curretnAuthentication);
-		System.out.println("Curretn Authentication Name      ####: " + curretnAuthentication.getName());
-		System.out.println("Curretn Authentication Principal ####: " + curretnAuthentication.getPrincipal());
+		System.out.println("Curretn Authentication All       ####: "+curretnAuthentication);
+		System.out.println("Curretn Authentication Name      ####: "+curretnAuthentication.getName());
+		System.out.println("Curretn Authentication Principal ####: "+curretnAuthentication.getPrincipal());
+		
+		Map<String, Object> resMap = new HashMap<>();
 
-		return "From Admin Controller";
+		resMap.put("msg", "This is form Resource  Server Admin Congroller");
+		resMap.put("Principal",curretnAuthentication.getPrincipal());
+		resMap.put("AuthenticationInfo",curretnAuthentication);
 
+		return resMap;
+				
 	}
 
 	@GetMapping("/per-write")

@@ -1,10 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:left; padding: 18px; background: cadetblue;" >
+  <a [routerLink]="'/home'">Home</a> | 
+  <a [routerLink]="'/user'">User</a> |
+  <a [routerLink]="'/user/admin'">Admin</a> |
+  <a [routerLink]="'/user/resource-admin'">Resource Admin</a> 
+</div>
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
 </div>
-
-
+<hr>
 
 <router-outlet></router-outlet>

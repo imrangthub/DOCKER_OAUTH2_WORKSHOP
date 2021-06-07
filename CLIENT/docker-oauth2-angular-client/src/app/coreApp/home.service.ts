@@ -7,27 +7,27 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class CoreAppService {
+export class HomeService {
 
   constructor(
     private http: HttpClient,
   ) { }
 
 
-  getWatherInfo(): Observable<any> {
+  getHomeInfo(): Observable<any> {
     const headers = {
       'Content-type': 'application/json'
     }
-    return this.http.get<any>('http://localhost:8181/get-weather-info', { headers }).pipe(
+    return this.http.get<any>('http://localhost:8081/home', { headers }).pipe(
       map((res: Response) => res)
     )
   }
 
-  getHomeResourceWithPost(): Observable<any> {
+  getHomeInfoPost(): Observable<any> {
     const headers = {
       'Content-type': 'application/json'
     }
-   return this.http.post<any>('http://localhost:8080/home', {}, {headers}).pipe(
+   return this.http.post<any>('http://localhost:8180/home', {}, {headers}).pipe(
       map((data: any) => data
       ));
   }
