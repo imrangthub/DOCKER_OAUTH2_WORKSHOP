@@ -16,7 +16,7 @@ export class AuthoriztionServerAdminService {
 
   authorizationServerAdminInfo(): Observable<any> {
     const headers = {
-      'Authorization': 'Bearer 1adac5c3-9163-4166-810a-db3cb08e3177',
+      'Authorization': 'Bearer 025e0d87-1b3b-4172-bc1e-df9311ad22e8',
       'Content-type': 'application/json'
     }
     return this.http.get<any>('http://localhost:8081/admin/list', { headers }).pipe(
