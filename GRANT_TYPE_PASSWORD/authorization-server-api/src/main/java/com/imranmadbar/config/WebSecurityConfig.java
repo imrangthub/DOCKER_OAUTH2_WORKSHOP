@@ -10,12 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 @Configuration
-public class ServerSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 
 	@Autowired
 	private CustomAuthenticationProvider customAuthenticationProvider;
-
+	
+	
 // Custom Authentication Provider
 	
 //    @Override
@@ -29,19 +30,13 @@ public class ServerSecurityConfiguration extends WebSecurityConfigurerAdapter {
  	
  	@Override
  	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
- 		auth.inMemoryAuthentication().withUser("user").password("12345").roles("USER").and().withUser("admin")
- 				.password(("123456")).roles("USER", "ADMIN");
+ 		auth.inMemoryAuthentication()
+ 		.withUser("user").password("user").roles("USER")
+ 		.and()
+ 		.withUser("admin").password(("admin")).roles("USER", "ADMIN");
  
  	}
     
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		.antMatchers("/login").permitAll()
-		.anyRequest().authenticated();
-	}
-
 	
 	@Bean
 	@Override

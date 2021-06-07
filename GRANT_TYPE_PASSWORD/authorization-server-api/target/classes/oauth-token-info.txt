@@ -1,0 +1,70 @@
+##### Generate Token #######
+============================
+
+1) Need to send Registered Client Info as in header section on oauth token request 
+
+End-point: http://localhost:8081/oauth/token
+Method:POST
+
+#Authorization Section:
+---------------------------------------------------
+In Authorization Section set client id and password
+
+Username: imranmadbarClientAppId
+Password: appSecret
+
+Then click Update Request Btn
+
+OR
+==
+
+#Headers Section
+--------------------------------
+Add the info In Headers(base64):
+
+Authorization:Basic aW1yYW5tYWRiYXJDbGllbnRBcHBJZDphcHBTZWNyZXQ=
+
+
+2) Add grant_type, user credentials and client id on Post Request Body Section
+
+#Headers Section
+--------------------------------
+Add the info In body(key-value):
+
+grant_type:password
+username:admin
+password:123456
+client_id:imranmadbarClientAppId
+
+--/ Then Send the Request
+
+#Token Response may like this:
+------------------------------
+{
+    "access_token": "757dc48c-3bbe-4a4d-901e-30a45e7143f0",
+    "token_type": "bearer",
+    "expires_in": 27987,
+    "scope": "read write"
+}
+
+
+
+
+##### Get Resource Using Token #######
+======================================
+
+End-point:http://localhost:8082/admin/list
+
+
+#Headers Section
+--------------------------------
+Add the info In Headers(key-value):
+
+Authorization:Bearer 757dc48c-3bbe-4a4d-901e-30a45e7143f0
+Content-Type:application/json
+ 
+
+
+
+
+

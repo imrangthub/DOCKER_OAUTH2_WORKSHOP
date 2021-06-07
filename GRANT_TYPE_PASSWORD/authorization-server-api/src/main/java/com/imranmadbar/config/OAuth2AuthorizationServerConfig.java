@@ -1,7 +1,8 @@
 package com.imranmadbar.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,11 +14,10 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
-import javax.sql.DataSource;
 
 @Configuration
 @EnableAuthorizationServer
-public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter {
+public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
@@ -28,11 +28,6 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Bean
-    public TokenStore tokenStore() {
-        return new JdbcTokenStore(dataSource);
-    }
-
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) {
         security
@@ -42,11 +37,28 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
     }
     
     
+    @Bean
+    public TokenStore tokenStore() {
+        return new JdbcTokenStore(dataSource);
+    }
+
+   @Override
+   public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+      endpoints
+              .tokenStore(tokenStore())
+              .authenticationManager(authenticationManager);
+   }
+  
+      
+    
+    
 //  Using JDBC Client Details
 //    @Override
 //    public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
 //        clients.jdbc(dataSource);
 //    }
+    
+    
     
  // For In Memory Client Details
     
@@ -59,11 +71,6 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
               .scopes("read", "write")
               .accessTokenValiditySeconds(60 * 60 * 8);
   }
+  
 
-    @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        endpoints
-                .tokenStore(tokenStore())
-                .authenticationManager(authenticationManager);
-    }
 }
