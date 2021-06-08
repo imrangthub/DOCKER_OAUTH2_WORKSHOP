@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthServerAdminComponent } from './auth-server-admin/auth-server-admin.component';
+import { AuthServerUserComponent } from './auth-server-user/auth-server-user.component';
 import { ResourceServerAdminComponent } from './resource-server-admin/resource-server-admin.component';
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { UserHomeComponent } from './user-home/user-home.component';
+import { ResourceServerUserComponent } from './resource-server-user/resource-server-user.component';
+
 
 const routes: Routes = [
   {
@@ -12,15 +13,15 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'dashboard',
-    component: UserDashboardComponent
+    path: 'auth-user',
+    component: AuthServerUserComponent
   },
   {
-    path: 'home',
-    component: UserHomeComponent
+    path: 'resource-user',
+    component: ResourceServerUserComponent
   },
   {
-    path: 'admin',
+    path: 'auth-admin',
     component: AuthServerAdminComponent
   },
   {

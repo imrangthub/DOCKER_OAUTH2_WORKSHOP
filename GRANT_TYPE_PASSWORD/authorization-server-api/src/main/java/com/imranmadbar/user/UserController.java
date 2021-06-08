@@ -1,6 +1,11 @@
 package com.imranmadbar.user;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,10 +22,24 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/user")
-	public String index(Model model) {
-		model.addAttribute("userList", userService.list());
-		return "user/home";
+	@GetMapping("/auth-user")
+	public Map<String, Object> index(){
+		
+		System.out.println("From Authorization User Controller");
+		
+		Authentication curretnAuthentication = SecurityContextHolder.getContext().getAuthentication();
+		System.out.println("Curretn Authentication All       ####: "+curretnAuthentication);
+		System.out.println("Curretn Authentication Name      ####: "+curretnAuthentication.getName());
+		System.out.println("Curretn Authentication Principal ####: "+curretnAuthentication.getPrincipal());
+		
+		Map<String, Object> resMap = new HashMap<>();
+
+		resMap.put("msg", "This is form Authorization Server User Congroller");
+		resMap.put("Principal",curretnAuthentication.getPrincipal());
+		resMap.put("AuthenticationInfo",curretnAuthentication);
+
+		return resMap;
+				
 	}
 
 	@GetMapping("/user/list")

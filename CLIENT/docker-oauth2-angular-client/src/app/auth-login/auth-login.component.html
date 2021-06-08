@@ -1,0 +1,53 @@
+<div id="logInMainArea">
+  <div class="loginWrapper loginWrapper_golobal">
+    <header id="header">
+      <div class="row">
+        <div class="container-fluid">
+          <span>
+          </span>
+        </div>
+      </div>
+    </header>
+    <div class="container-fluid">
+      <div class="col-md-5 col-sm-8 marginAuto" id="loginArea">
+        <div id="loginform" class="form-custom">
+          <div class="errorMes">{{errorMgs}}</div>
+          <form class="form-horizontal form-signin" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h4>Sign in</h4>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-user"></i></div>
+                </div>
+                <input (click)="clearErrorMg()" type="text" class="form-control" id="userName" placeholder="Username"
+                  formControlName="userName" required>
+                <div *ngIf="isFieldInvalid('userName')">
+                  <small id="userName" class="form-text text-muted authError">Please enter an user name.</small>
+                </div>
+              </div>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-unlock-alt"></i></div>
+                </div>
+                <input [attr.type]="passViewer" class="form-control" id="password" placeholder="Password"
+                  formControlName="password" required> <i [ngClass]="passwordToggleIcon" (click)="passwordViewToggle()"
+                  class="toggle-password"></i>
+                <div *ngIf="isFieldInvalid('password')">
+                  <small id="password" class="form-text text-muted authError">Please enter password.</small>
+                </div>
+              </div>
+            <button type="submit" [disabled]="isLoading"
+              class="btn-gradient-primary btnWidth btn-block btnOne borderRound loginFont marginAuto">
+              <i class="fa fa-spinner fa-spin" *ngIf="isLoading"></i>
+              Sign in&nbsp;
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </form>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer id="footerContent">
+  <p class="text-center">©2020 imranmadbar@gmail.com</p>
+</footer>
