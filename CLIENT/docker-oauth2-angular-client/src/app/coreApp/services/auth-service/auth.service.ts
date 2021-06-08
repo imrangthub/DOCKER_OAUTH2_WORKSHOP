@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
-import { User } from '../models/user.model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map, catchError } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import { CustomizeCookieService } from './customize-cookie.service';
-import { ToastrService } from 'ngx-toastr';
+import { User } from '../../models/user.model';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class AuthService {
     private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     private BASE_URL = environment.baseUrl;
     private API_URL = environment.authApiUrl;
     private END_POINT = '/oauth/token';
-    private USER_DETAILS = this.BASE_URL + this.API_URL + '/api/coreUser/user-details';
     private AUTH_URL = `${this.BASE_URL}${this.API_URL}${this.END_POINT}`;
 
-    private CLIENT_ID = 'medClientIdPassword';
-    private PASSWORD = 'secret';
+    private CLIENT_ID = 'imranmadbarClientAppId';
+    private PASSWORD = 'appSecret';
     private GRANT_TYPE = 'password';
 
     public _isLoading = false;
@@ -39,7 +39,6 @@ export class AuthService {
         private httpClient: HttpClient,
         private cookieService: CookieService,
         private cookie: CustomizeCookieService,
-        private toastr: ToastrService,
     ) { }
 
     // obtainAccessToken(user: User) {
@@ -148,8 +147,7 @@ export class AuthService {
         //this.cookieService.set("access_token", token.access_token, expireDate);
         this.cookie.setWithExpiryInSeconds("access_token", token.access_token, expireDate);
         //console.log('Obtained Access token');
-        this.setUserInformation();
-        //        this.router.navigate(['/']);
+        this.router.navigate(['/']);
     }
 
     // setUserInformation(): void {
@@ -184,43 +182,7 @@ export class AuthService {
     //         });
     // }
 
-    setUserInformation(): void {
-        this.httpClient.get<any>(`${this.USER_DETAILS}`, <any>{}).subscribe(
-            res => {
-                this.userDetils = res;
-                console.log(this.userDetils);
-                const _userInfo = this.userDetils.obj;
-                const companyList = _userInfo.companyList;
-                if (companyList) {
-                    Object.keys(companyList).forEach((key, value, array) => {
-                        if (companyList[key].companyId == _userInfo.defaultCompanyId) {
-                            _userInfo.companyAddress1 = companyList[key].compnayAddress1
-                            _userInfo.companyAddress2 = companyList[key].compnayAddress2
-                        }
-                    });
-                }
-                if (this.userDetils.obj != null) {
 
-                   
-                   
-                    localStorage.setItem('userInfo', JSON.stringify(this.userDetils.obj));
-                  
-                    if (this.userDetils.obj.userDefaultPageLink) {
-                        this.router.navigate([this.userDetils.obj.userDefaultPageLink]);
-                    } else {
-                        this.router.navigate(['/']);
-                    }
-                } else {
-                    localStorage.setItem('userInfo', JSON.stringify(null));
-                    this.router.navigate(['/']);
-                }
-            },
-            err => {
-                localStorage.setItem('userInfo', JSON.stringify(null));
-                this.router.navigate(['/']);
-                console.log('Error : ', err)
-            })
-    }
 
     getResource(resourceUrl): Observable<any> {
 

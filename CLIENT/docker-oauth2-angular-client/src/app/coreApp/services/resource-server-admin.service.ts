@@ -16,7 +16,7 @@ export class ResourceServerAdminService {
 
   resourceServerAdminInfo(): Observable<any> {
     const headers = {
-      'Authorization': 'Bearer 025e0d87-1b3b-4172-bc1e-df9311ad22e8',
+      'Authorization': 'Bearer b9a5a94d-99f3-4255-889c-964d5efe66c4',
       'Content-type': 'application/json'
     }
     return this.http.get<any>('http://localhost:8082/admin/list', { headers }).pipe(

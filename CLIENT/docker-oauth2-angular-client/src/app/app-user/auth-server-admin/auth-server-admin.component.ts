@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthoriztionServerAdminService } from 'src/app/coreApp/authoriztion-server-admin.service';
+import { AuthoriztionServerAdminService } from 'src/app/coreApp/services/authoriztion-server-admin.service';
 
 @Component({
   selector: 'app-auth-server-admin',
