@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ResourceServerUserService } from 'src/app/coreApp/services/resourceServerUser/resource-server-user.service';
 
 @Component({
   selector: 'app-resource-server-user',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResourceServerUserComponent implements OnInit {
 
-  constructor() { }
+  resObj:any={};
+
+
+  constructor(
+    private resourceServerUserService: ResourceServerUserService
+  ) { }
 
   ngOnInit() {
+    this.getResourceServerAdminInfo();
   }
-
+  
+  getResourceServerAdminInfo(): void {
+    this.resourceServerUserService.resourceServerUserInfo().subscribe(
+      res => {
+        console.log('resourceServerUserInfo: ',res);
+        this.resObj = res;
+      },
+      err => {
+        console.log("resourceServerUserInfoErr: ", err);
+      }
+    )
+  }
 }

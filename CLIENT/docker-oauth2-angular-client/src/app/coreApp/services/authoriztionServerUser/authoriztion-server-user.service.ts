@@ -16,7 +16,7 @@ export class AuthoriztionServerUserService {
 
   authServerUserInfo(): Observable<any> {
     const headers = {
-      'Authorization': 'Bearer b9a5a94d-99f3-4255-889c-964d5efe66c4',
+      'Authorization': 'Bearer 91ff8f81-984c-4a65-801d-9560573d4e8a',
       'Content-type': 'application/json'
     }
     return this.http.get<any>('http://localhost:8081/auth-user', { headers }).pipe(
@@ -24,15 +24,6 @@ export class AuthoriztionServerUserService {
     )
   }
 
-  getHomeResourceWithPost(): Observable<any> {
-    const headers = {
-      'Authorization': 'Bearer 1adac5c3-9163-4166-810a-db3cb08e3177',
-      'Content-type': 'application/json'
-    }
-   return this.http.post<any>('http://localhost:8082/admin/save', {}, {headers}).pipe(
-      map((data: any) => data
-      ));
-  }
 
 
 

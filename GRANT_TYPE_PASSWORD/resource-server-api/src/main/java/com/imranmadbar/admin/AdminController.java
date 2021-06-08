@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/resource")
 public class AdminController {
 
-	@GetMapping("/list")
+	@GetMapping("/admin")
 	public Map<String, Object> index(){
 		
 		System.out.println("From Admin Controller");

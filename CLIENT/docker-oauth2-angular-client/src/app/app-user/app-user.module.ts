@@ -6,9 +6,10 @@ import { AuthServerAdminComponent } from './auth-server-admin/auth-server-admin.
 import { ResourceServerAdminComponent } from './resource-server-admin/resource-server-admin.component';
 import { AuthServerUserComponent } from './auth-server-user/auth-server-user.component';
 import { ResourceServerUserComponent } from './resource-server-user/resource-server-user.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 @NgModule({
-  declarations: [ AuthServerAdminComponent, ResourceServerAdminComponent, AuthServerUserComponent, ResourceServerUserComponent],
+  declarations: [ AuthServerAdminComponent, ResourceServerAdminComponent, AuthServerUserComponent, ResourceServerUserComponent, UserDashboardComponent],
   imports: [
     CommonModule,
     AppUserRoutingModule

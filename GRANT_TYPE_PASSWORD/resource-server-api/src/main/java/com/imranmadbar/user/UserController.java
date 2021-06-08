@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/resource")
 public class UserController {
 
-	@GetMapping("/resource-user")
+	@GetMapping("/user")
 	public Map<String, Object> index(){
 		
 		System.out.println("From Resource User Controller");

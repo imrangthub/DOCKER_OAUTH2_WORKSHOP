@@ -5,6 +5,7 @@ import { AuthServerAdminComponent } from './auth-server-admin/auth-server-admin.
 import { AuthServerUserComponent } from './auth-server-user/auth-server-user.component';
 import { ResourceServerAdminComponent } from './resource-server-admin/resource-server-admin.component';
 import { ResourceServerUserComponent } from './resource-server-user/resource-server-user.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full'
+  },
+  {
+    path: 'dashboard',
+    canActivate: [AuthGuard],
+    component: UserDashboardComponent
   },
   {
     path: 'auth-user',
