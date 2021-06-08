@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './coreApp/services/auth-service/auth.service';
 import { HomeService } from './coreApp/services/home.service';
 
 @Component({
@@ -14,11 +15,18 @@ export class AppComponent {
 
 
   constructor(
+    private authService: AuthService,
     private homeService: HomeService
   ) { }
 
   ngOnInit() {
     this.getHomeResourceWithGet();
+  }
+
+
+  onClickLogoutBtn():void {
+    console.log("onClickLogoutBtn");
+      this.authService.logout();
   }
   
   getHomeResourceWithGet(): void {

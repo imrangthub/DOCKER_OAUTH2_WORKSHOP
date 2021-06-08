@@ -6,11 +6,11 @@
   <a [routerLink]="'/user/auth-admin'">Auth Admin</a> |
   <a [routerLink]="'/user/resource-admin'">Resource Admin</a> |
   <a [routerLink]="'/login'">Login</a> |
-  <a [routerLink]="'#'">logout</a> 
+  <button (click)="onClickLogoutBtn()">logout</button> 
 </div>
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    <!-- Welcome to {{ title }}! -->
   </h1>
 </div>
 <hr>

@@ -2,6 +2,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthLoginComponent } from './auth-login/auth-login.component';
+import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { StaticTokenCheckComponent } from './static-token-check/static-token-check.component';
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'user',
+    canActivate: [AuthGuard],
     loadChildren: './app-user/app-user.module#AppUserModule'
   }
 ];
