@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class ResourceServerAdminService {
+export class ResourceServerUserService {
 
   constructor(
     private http: HttpClient,
@@ -19,7 +19,7 @@ export class ResourceServerAdminService {
       'Authorization': 'Bearer b9a5a94d-99f3-4255-889c-964d5efe66c4',
       'Content-type': 'application/json'
     }
-    return this.http.get<any>('http://localhost:8082/admin/list', { headers }).pipe(
+    return this.http.get<any>('http://localhost:8082/resource-user', { headers }).pipe(
       map((res: Response) => res)
     )
   }
@@ -29,7 +29,7 @@ export class ResourceServerAdminService {
       'Authorization': 'Bearer 1adac5c3-9163-4166-810a-db3cb08e3177',
       'Content-type': 'application/json'
     }
-   return this.http.post<any>('http://localhost:8082/admin/save', {}, {headers}).pipe(
+   return this.http.post<any>('http://localhost:8081/admin/save', {}, {headers}).pipe(
       map((data: any) => data
       ));
   }

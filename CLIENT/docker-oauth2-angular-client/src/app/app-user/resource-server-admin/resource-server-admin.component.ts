@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ResourceServerAdminService } from 'src/app/coreApp/services/resource-server-admin.service';
+import { ResourceServerAdminService } from 'src/app/coreApp/services/resourceServerUser/resource-server-admin.service';
 
 @Component({
   selector: 'app-resource-server-admin',
