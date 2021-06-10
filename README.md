@@ -269,7 +269,7 @@ Add User
 
 --------------------------------------------------
 
-      INSERT INTO users_tbl(`id`, `email`, `full_name`, `password`, `username`) VALUES ('1', 'imran@gmail.com', 'MD IMRAN HOSSAIN', '123456', 'admin');
+      INSERT INTO users_tbl(`id`, `email`, `full_name`, `password`, `username`) VALUES ('1', 'imran@gmail.com', 'MD IMRAN HOSSAIN', 'admin', 'admin');
 
 Add Role
 
