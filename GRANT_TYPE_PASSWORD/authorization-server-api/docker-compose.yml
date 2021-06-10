@@ -1,0 +1,35 @@
+version: "3"
+services:
+  spring-boot-mysql-oauth2-db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mysqloauth2db
+    ports:
+      - "3306:3306"
+  oauth2-authorization-server-api:
+    image: imranmadbar/oauth2-authorization-server-api:1.0.0.RELEASE
+    restart: on-failure
+    depends_on:
+      - spring-boot-mysql-oauth2-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://spring-boot-mysql-oauth2-db:3306/mysqloauth2db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    links:
+      - "spring-boot-mysql-oauth2-db:spring-boot-mysql-oauth2-db"
+    ports:
+      - "8181:8081"
+  oauth2-resource-server-api:
+    image: imranmadbar/oauth2-resource-server-api:1.0.0.RELEASE
+    restart: on-failure
+    depends_on:
+      - oauth2-authorization-server-api
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://spring-boot-mysql-oauth2-db:3306/mysqloauth2db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    links:
+      - "spring-boot-mysql-oauth2-db:spring-boot-mysql-oauth2-db"
+    ports:
+      - "8282:8082"
