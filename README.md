@@ -2,41 +2,49 @@
 Docker with OAuth2
 
 #Spring Boot micriservice with Spring Security and OAuth2 InMemory user credentials and client Info
-===================================================================================================
 
 
-##### USER CREDENTIALS #######
-==============================
+#USER CREDENTIALS
+-----------------
+
 USER:
-====
+----
+
 username:user
+
 password:user
 
+
 ADMIN:
-=====
+-----
+
 username:admin
+
 password:admin
 
 
-##### API #######
-=================
-#Authorization Server api
+ #AP
+----
+
+Authorization Server api
 ------------------------
+
 http://localhost:8181/oauth/token                      // FOR ALL
 http://localhost:8181/home                             // FOR ALL
 http://localhost:8181/authorization-server-admin/info  // FOR ROLE_ADMIN
 http://localhost:8181/authorization-server-user/info   // FOR ROLE_ADMIN, ROLE_USER
 
-#Resource Server api
+Resource Server api
 --------------------
+
 http://localhost:8282/home                             // FOR ALL
 http://localhost:8282/authorization-server-admin/info  // FOR ROLE_ADMIN
 http://localhost:8282/authorization-server-user/info   // FOR ROLE_ADMIN, ROLE_USER
 
 
 
-##### DOCKER INFO #######
-=========================
+#DOCKER INFO
+------------
 
 =>docker image build -t imranmadbar/oauth2-resource-server-api:1.0.0.RELEASE .
 =>docker image build -t imranmadbar/oauth2-authorization-server-api:1.0.0.RELEASE .
@@ -58,8 +66,9 @@ http://localhost:8282/authorization-server-user/info   // FOR ROLE_ADMIN, ROLE_U
 
 
 
-##### OAUTH2 INFO #######
-=========================
+#OAUTH2 INFO
+---------------
+
 
 1) Need to send Registered Client Info as in header section on oauth token request 
 
@@ -110,8 +119,8 @@ client_id:imranmadbarClientAppId
 
 
 
-##### Get Resource Using Token #######
-======================================
+#Get Resource Using Token 
+--------------------------
 
 End-point:http://localhost:8082/admin/list
 
@@ -126,8 +135,9 @@ Content-Type:application/json
 
 
 
-##### DATABASE INFO #######
-===========================
+#DATABASE INFO
+----------------
+
 
 -- Create OAuth2 schema tables --
 
@@ -199,11 +209,13 @@ create table if not exists ClientDetails (
   
   
   
-Data
-===============================================
+#Data
+------
   
  OAuth2 Related 
- #Client Info 
+ 
+ Client Info 
+ 
 -----------------------------------------------
 INSERT INTO oauth_client_details
 (`client_id`, `client_secret`, `scope`, `authorized_grant_types`, `access_token_validity`, `refresh_token_validity`, `autoapprove`) 
@@ -212,23 +224,28 @@ VALUES
 
 
 Spring Security Related
-#Add User
+
+Add User
+
 --------------------------------------------------
 INSERT INTO users_tbl(`id`, `email`, `full_name`, `password`, `username`) VALUES ('1', 'imran@gmail.com', 'MD IMRAN HOSSAIN', '123456', 'admin');
 
-#Add Role
+Add Role
+
 --------------------------------------------------
 INSERT INTO roles_tbl (`id`, `description`, `is_deleted`, `name`) VALUES ('1', 'For admin user', '0', 'ROLE_ADMIN');
 
 
 #Mape User and Role
+
 --------------------------------------------------
 INSERT INTO users_roles_tbl (`user_id`, `role_id`) VALUES ('1', '1');
 
 
 
 Hibernate Query
-========================================================
+
+-----------------------
 
 Hibernate: 
     
