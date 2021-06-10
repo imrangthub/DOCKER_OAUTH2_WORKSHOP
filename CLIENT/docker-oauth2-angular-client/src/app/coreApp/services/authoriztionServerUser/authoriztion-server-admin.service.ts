@@ -15,14 +15,23 @@ export class AuthoriztionServerAdminService {
 
 
   authorizationServerAdminInfo(): Observable<any> {
-    const headers = {
-      'Authorization': 'Bearer 91ff8f81-984c-4a65-801d-9560573d4e8a',
-      'Content-type': 'application/json'
-    }
-    return this.http.get<any>('http://localhost:8081/admin/list', { headers }).pipe(
+    return this.http.get<any>('http://localhost:8181/authorization-server-admin/info').pipe(
       map((res: Response) => res)
     )
   }
+
+
+
+  // authorizationServerAdminInfo(): Observable<any> {
+  //   const headers = {
+  //     'Authorization': 'Bearer 9398de08-b18f-4bd8-bd93-b344a329cf62',
+  //     'Content-type': 'application/json'
+  //   }
+  //   return this.http.get<any>('http://localhost:8181/authorization-server-admin/info', { headers }).pipe(
+  //     map((res: Response) => res)
+  //   )
+  // }
+
 
 
 

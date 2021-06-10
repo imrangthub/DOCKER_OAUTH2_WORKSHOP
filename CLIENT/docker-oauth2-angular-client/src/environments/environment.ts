@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: window.location.protocol + '//' + window.location.hostname + ':',
-  authApiUrl: '8081'
+  authApiUrl: '8181'
 };
 
 /*

@@ -82,7 +82,7 @@ export class TokenInterceptorService implements HttpInterceptor {
   }
 
   addAuthenticationToken(request) {
-    // Get access token from Local Storage
+    console.log("addAuthenticationToken");
     const accessToken = this.authService.getAccessToken();
 
     // If access token is null this means that user is not logged in

@@ -20,7 +20,8 @@ export class ResourceServerAdminComponent implements OnInit {
   }
   
   getResourceServerAdminInfo(): void {
-    this.resourceServerAdminService.resourceServerAdminInfo().subscribe(
+    let reqObj={}
+    this.resourceServerAdminService.resourceServerAdminInfo(reqObj).subscribe(
       res => {
         console.log('getResourceServerAdminInfo: ',res);
         this.resObj = res;

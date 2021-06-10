@@ -16,11 +16,12 @@ export class ResourceServerUserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getResourceServerAdminInfo();
+    this.getResourceServerUserInfo();
   }
   
-  getResourceServerAdminInfo(): void {
-    this.resourceServerUserService.resourceServerUserInfo().subscribe(
+  getResourceServerUserInfo(): void {
+    let reqObj={}
+    this.resourceServerUserService.resourceServerUserInfo(reqObj).subscribe(
       res => {
         console.log('resourceServerUserInfo: ',res);
         this.resObj = res;
