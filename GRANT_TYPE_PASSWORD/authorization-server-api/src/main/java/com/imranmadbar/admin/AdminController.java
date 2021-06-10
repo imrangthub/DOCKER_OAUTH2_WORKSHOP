@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/authorization-server-admin")
 public class AdminController {
 	
-	@GetMapping("/list")
+	@GetMapping("/info")
 	public Map<String, Object> index(){
 		
 		System.out.println("From Admin Controller");

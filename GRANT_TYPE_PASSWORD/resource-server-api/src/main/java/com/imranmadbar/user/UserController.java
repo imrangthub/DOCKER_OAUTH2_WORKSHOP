@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/resource")
+@RequestMapping("/resource-server-user")
 public class UserController {
 
-	@GetMapping("/user")
+	@GetMapping("/info")
 	public Map<String, Object> index(){
 		
 		System.out.println("From Resource User Controller");
@@ -34,34 +34,34 @@ public class UserController {
 				
 	}
 
-	@GetMapping("/per-write")
-	@PreAuthorize("#oauth2.hasScope('write')")
-	public String adminWrite() {
-
-		System.out.println("From User Controller WRITE PERMISSION");
-
-		Authentication curretnAuthentication = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println("Curretn Authentication All       ####: " + curretnAuthentication);
-		System.out.println("Curretn Authentication Name      ####: " + curretnAuthentication.getName());
-		System.out.println("Curretn Authentication Principal ####: " + curretnAuthentication.getPrincipal());
-
-		return "From User Controller";
-
-	}
-
-	@GetMapping("/per-read")
-	@PreAuthorize("#oauth2.hasScope('read')")
-	public String userWrite() {
-
-		System.out.println("From User Controller READ PERMISITION");
-
-		Authentication curretnAuthentication = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println("Curretn Authentication All       ####: " + curretnAuthentication);
-		System.out.println("Curretn Authentication Name      ####: " + curretnAuthentication.getName());
-		System.out.println("Curretn Authentication Principal ####: " + curretnAuthentication.getPrincipal());
-
-		return "From User Controller";
-
-	}
+//	@GetMapping("/per-write")
+//	@PreAuthorize("#oauth2.hasScope('write')")
+//	public String adminWrite() {
+//
+//		System.out.println("From User Controller WRITE PERMISSION");
+//
+//		Authentication curretnAuthentication = SecurityContextHolder.getContext().getAuthentication();
+//		System.out.println("Curretn Authentication All       ####: " + curretnAuthentication);
+//		System.out.println("Curretn Authentication Name      ####: " + curretnAuthentication.getName());
+//		System.out.println("Curretn Authentication Principal ####: " + curretnAuthentication.getPrincipal());
+//
+//		return "From User Controller";
+//
+//	}
+//
+//	@GetMapping("/per-read")
+//	@PreAuthorize("#oauth2.hasScope('read')")
+//	public String userWrite() {
+//
+//		System.out.println("From User Controller READ PERMISITION");
+//
+//		Authentication curretnAuthentication = SecurityContextHolder.getContext().getAuthentication();
+//		System.out.println("Curretn Authentication All       ####: " + curretnAuthentication);
+//		System.out.println("Curretn Authentication Name      ####: " + curretnAuthentication.getName());
+//		System.out.println("Curretn Authentication Principal ####: " + curretnAuthentication.getPrincipal());
+//
+//		return "From User Controller";
+//
+//	}
 
 }

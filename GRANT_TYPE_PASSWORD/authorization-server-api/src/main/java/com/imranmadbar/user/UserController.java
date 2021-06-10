@@ -13,16 +13,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
 @RestController
+@RequestMapping("/authorization-server-user")
 public class UserController {
 
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/auth-user")
+	@GetMapping("/info")
 	public Map<String, Object> index(){
 		
 		System.out.println("From Authorization User Controller");

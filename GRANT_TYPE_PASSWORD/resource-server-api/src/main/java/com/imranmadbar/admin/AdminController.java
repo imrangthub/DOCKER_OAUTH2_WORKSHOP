@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/resource")
+@RequestMapping("/resource-server-admin")
 public class AdminController {
 
-	@GetMapping("/admin")
+	@GetMapping("/info")
 	public Map<String, Object> index(){
 		
 		System.out.println("From Admin Controller");
@@ -33,35 +33,46 @@ public class AdminController {
 		return resMap;
 				
 	}
-
-	@GetMapping("/per-write")
-	@PreAuthorize("#oauth2.hasScope('write')")
-	public String adminWrite() {
-
-		System.out.println("From Admin Controller WRITE PERMISSION");
-
-		Authentication curretnAuthentication = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println("Curretn Authentication All       ####: " + curretnAuthentication);
-		System.out.println("Curretn Authentication Name      ####: " + curretnAuthentication.getName());
-		System.out.println("Curretn Authentication Principal ####: " + curretnAuthentication.getPrincipal());
-
-		return "From Admin Controller";
-
-	}
-
-	@GetMapping("/per-read")
-	@PreAuthorize("#oauth2.hasScope('read')")
-	public String adminRead() {
-
-		System.out.println("From Admin Controller Read PERMISSION");
-
-		Authentication curretnAuthentication = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println("Curretn Authentication All       ####: " + curretnAuthentication);
-		System.out.println("Curretn Authentication Name      ####: " + curretnAuthentication.getName());
-		System.out.println("Curretn Authentication Principal ####: " + curretnAuthentication.getPrincipal());
-
-		return "From Admin Controller";
-
-	}
+	
+	
+	/*
+	 * @GetMapping("/per-write")
+	 * 
+	 * @PreAuthorize("#oauth2.hasScope('write')") public String adminWrite() {
+	 * 
+	 * System.out.println("From Admin Controller WRITE PERMISSION");
+	 * 
+	 * Authentication curretnAuthentication =
+	 * SecurityContextHolder.getContext().getAuthentication();
+	 * System.out.println("Curretn Authentication All       ####: " +
+	 * curretnAuthentication);
+	 * System.out.println("Curretn Authentication Name      ####: " +
+	 * curretnAuthentication.getName());
+	 * System.out.println("Curretn Authentication Principal ####: " +
+	 * curretnAuthentication.getPrincipal());
+	 * 
+	 * return "From Admin Controller";
+	 * 
+	 * }
+	 * 
+	 * @GetMapping("/per-read")
+	 * 
+	 * @PreAuthorize("#oauth2.hasScope('read')") public String adminRead() {
+	 * 
+	 * System.out.println("From Admin Controller Read PERMISSION");
+	 * 
+	 * Authentication curretnAuthentication =
+	 * SecurityContextHolder.getContext().getAuthentication();
+	 * System.out.println("Curretn Authentication All       ####: " +
+	 * curretnAuthentication);
+	 * System.out.println("Curretn Authentication Name      ####: " +
+	 * curretnAuthentication.getName());
+	 * System.out.println("Curretn Authentication Principal ####: " +
+	 * curretnAuthentication.getPrincipal());
+	 * 
+	 * return "From Admin Controller";
+	 * 
+	 * }
+	 */
 
 }

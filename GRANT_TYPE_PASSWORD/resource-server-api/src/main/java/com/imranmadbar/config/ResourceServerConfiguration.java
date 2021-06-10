@@ -21,8 +21,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 	public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/home/**").permitAll() // Home end point not allow yet because anonymous user disable here. 
-            .antMatchers("/user/**").access("hasRole('USER') or hasAuthority('ADMIN')")
-            .antMatchers("/admin/**").access("hasRole('ADMIN')")
+            .antMatchers("/resource-server-user/**").access("hasRole('USER') or hasAuthority('ADMIN')")
+            .antMatchers("/resource-server-admin/**").access("hasRole('ADMIN')")
             .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler())
             .and()
             .anonymous().disable();
@@ -44,7 +44,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 	public RemoteTokenServices tokenService() {
 		RemoteTokenServices tokenService = new RemoteTokenServices();
 //		tokenService.setCheckTokenEndpointUrl("http://oauth2-authorization-server-api:8081/oauth/check_token");
-		tokenService.setCheckTokenEndpointUrl("http://localhost:8081/oauth/check_token");
+		tokenService.setCheckTokenEndpointUrl("http://oauth2-authorization-server-api:8081/oauth/check_token");
 		tokenService.setClientId("imranmadbarClientAppId");
 		tokenService.setClientSecret("appSecret");
 		return tokenService;
