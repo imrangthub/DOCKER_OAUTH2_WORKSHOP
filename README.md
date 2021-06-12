@@ -22,6 +22,14 @@ username:admin
 
 password:admin
 
+#CLIENT
+---------
+
+=>docker build -t imranmadbar/oauth2-angular-client:1.0.0.RELEASE  .
+
+
+=>docker run --name oauth2-angular-client -p 4200:4200 imranmadbar/oauth2-angular-client:1.0.0.RELEASE
+
 
  #AP
 ----
