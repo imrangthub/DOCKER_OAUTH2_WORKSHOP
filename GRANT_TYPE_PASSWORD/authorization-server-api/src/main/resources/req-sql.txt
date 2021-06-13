@@ -1,6 +1,7 @@
--- Create OAuth2 schema tables --
+===================================
+# Create OAuth2 schema tables    --
+===================================
 
-drop table if exists oauth_client_details;
 create table oauth_client_details (
     client_id VARCHAR(255) PRIMARY KEY,
     resource_ids VARCHAR(255),
@@ -67,12 +68,12 @@ create table if not exists ClientDetails (
   );
   
   
-  
-Data
+=============================================== 
+# Data |  OAuth2 Related 
 ===============================================
   
- OAuth2 Related 
- #Client Info 
+
+ Client Info 
 -----------------------------------------------
 INSERT INTO oauth_client_details
 (`client_id`, `client_secret`, `scope`, `authorized_grant_types`, `access_token_validity`, `refresh_token_validity`, `autoapprove`) 
@@ -80,24 +81,36 @@ VALUES
 ('imranmadbarClientAppId', 'appSecret', 'imranmadbar,med,read,write', 'password,authorization_code,refresh_token', '36000', '36000', '1');
 
 
-Spring Security Related
-#Add User
---------------------------------------------------
-INSERT INTO users_tbl(`id`, `email`, `full_name`, `password`, `username`) VALUES ('1', 'imran@gmail.com', 'MD IMRAN HOSSAIN', '123456', 'admin');
 
-#Add Role
+
+=============================================== 
+# Data | Spring Security Related  | User 
+===============================================
+
+Add User
+--------------------------------------------------
+INSERT INTO users_tbl(`id`, `full_name`, `password`, `username`) VALUES ('1', 'MD IMRAN HOSSAIN', 'admin', 'admin');
+INSERT INTO users_tbl(`id`, `full_name`, `password`, `username`) VALUES ('2', 'BABU HOSSAIM', 'user', 'user');
+
+
+Add Role
 --------------------------------------------------
 INSERT INTO roles_tbl (`id`, `description`, `is_deleted`, `name`) VALUES ('1', 'For admin user', '0', 'ROLE_ADMIN');
+INSERT INTO roles_tbl (`id`, `description`, `is_deleted`, `name`) VALUES ('2', 'For Normal User', '0', 'ROLE_USER');
 
 
-#Mape User and Role
+Mape User and Role
 --------------------------------------------------
 INSERT INTO users_roles_tbl (`user_id`, `role_id`) VALUES ('1', '1');
+INSERT INTO users_roles_tbl (`user_id`, `role_id`) VALUES ('1', '2');
+INSERT INTO users_roles_tbl (`user_id`, `role_id`) VALUES ('2', '2');
 
 
 
-Hibernate Query
-========================================================
+
+==============================================
+# Hibernate Query
+==============================================
 
 Hibernate: 
     

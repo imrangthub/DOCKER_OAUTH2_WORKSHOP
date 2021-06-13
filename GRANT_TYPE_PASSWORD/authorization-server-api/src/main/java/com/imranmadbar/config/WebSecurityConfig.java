@@ -19,24 +19,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 // Custom Authentication Provider
 	
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//    	auth.authenticationProvider(customAuthenticationProvider);
-//    }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    	auth.authenticationProvider(customAuthenticationProvider);
+    }
 //    
   	
 	
  // In Memory Authentication Provider
  	
- 	@Override
- 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
- 		auth.inMemoryAuthentication()
- 		.withUser("user").password("user").roles("USER")
- 		.and()
- 		.withUser("admin").password(("admin")).roles("USER", "ADMIN");
- 
- 	}
-    
+// 	@Override
+// 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+// 		auth.inMemoryAuthentication()
+// 		.withUser("user").password("user").roles("USER")
+// 		.and()
+// 		.withUser("admin").password(("admin")).roles("USER", "ADMIN");
+// 
+// 	}
+//    
 	
 	@Bean
 	@Override
